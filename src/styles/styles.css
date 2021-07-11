@@ -629,32 +629,22 @@ width : *;
   }
 }
 
-@mixin STD-BOX-NORMAL 
-{
-  color:color(text);
-  background: color(back);
-  border:0.14em solid color(border);
-  text-selection: color(text) transparent;
-  padding:0.2em 0.4em;
-  vertical-align:middle;
+
+.progress-bar {
+  /* background-color: #fefefe; */
+  /* border-radius: 3px; */
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); */
+  /* margin: 15px; */
+  height: 2px;
+  width: *;
 }
 
-@set std-progress
-{
-  :root
-  {
-    @STD-BOX-NORMAL;
-    behavior:none; // not using default behavior
-    aspect: Flat.Progress url(../lib/flat-progress.tis);
-    //height:0.28em;
-    color: color(black);
-    //color: red;
-    border-style:none;
-    border-radius:0;
-    padding:0;
-  }
+.progress {
+  background: black;
+  height: 2px;
+  width: 0;
+  transition: width 0.5s ease-in;
 }
-
 
 
 @set progressTooltip{
@@ -665,12 +655,7 @@ width : *;
   p{
     width : *;
     text-align : center;
-  }
-  progress {
-    width: *;
-    height : 2px;
-    display:inline-block; 
-    style-set:std-progress; 
+    font-size: 10pt;
   }
   .show{
     visibility : visible;

@@ -1,17 +1,30 @@
 class ProgressTooltip : Reactor.Component 
 {
-  function this(props,kids) {this.props = props;}
+  this var progress;
+  function this(props,kids) {this.props = props; }
 
   function render() {
+    //debug info (%{this.progress});
      return <div styleset="../styles/styles.css#progressTooltip">
      <p>{this.props.message}</p>
-     <progress :value={this.props.progress} />
+     <div class="progress-bar">
+          <div class="progress"></div>
+     </div>
      </div>;
   }
 
 
   function attached() {
     stdout.println("@ Tooltip Attched");
+    var tooltip = this;
+
+    self.on("fileDownloadProgress", (evt) => {
+      var pr = $(#.progress);
+      pr.style["width"] = evt.data.progress + '%';
+      debug info (file download at {evt.data.progress}%)
+        // tooltip.update {progress: evt.data.progress};
+
+    });
   }
   function detached() {
     stdout.println("Tooltip gone");
