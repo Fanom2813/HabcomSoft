@@ -1,0 +1,16 @@
+class MyWYSIWYG : Reactor.Component 
+{
+    function this(props,kids) {}
+
+    function attached() {
+        stdout.println("WYSIWYG attached");
+    }
+
+    function render(){
+        return <h1>test</h1>;
+    }
+
+    // function detached() {
+    //     stdout.println("WYSIWYG detached");
+    // }
+}

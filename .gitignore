@@ -1,0 +1,10 @@
+
+api/
+src/extra/
+/src/views/feedEditor.htm
+/src/views/navigation.tis
+src/lib/
+srcJs/extra/
+srcJs/lib/
+srcJs/views/feedEditor.htm
+scapp.exe

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html 
+lang="en" 
+window-resizable="true" 
+window-frame="extended" 
+window-blurbehind="dark"
+window-width="1000dip"
+window-height="700dip">
+<!-- window-icon="img/logo_urnd.svg" -->
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./styles/styles.css" rel="stylesheet">
+    <link href="./styles/svg-icon.css" rel="stylesheet">
+
+    <title>HabcomSoft Official</title>
+
+    <script>
+
+        document.on("ready", function () {
+            Window.this.minSize = [800, 400];
+        });
+
+        document.on("keydown", function (event) {
+            if(event.keyCode == 116){
+                    console.log("Refresh !");
+                    Window.this.load( document.url() )
+                    return true;
+            }
+        })
+
+    </script>
+
+    <script type="module">
+
+        import { Home } from "./views/Home.js";
+        import { About } from "./views/About.js";
+        import { Messages } from "./views/Messages.js";
+        import { Services } from "./views/Services.js";
+        import { HeaderNavigation } from "./views/HeaderNavigation.js";
+        import { FeedViewer } from "./views/FeedViewer.js";
+
+        const routes = { // routename: view
+            "index": <Home />,
+            "about": <About />,
+            "services": <Services />,
+            "messages": <Messages />,
+            "feed_viewer": <FeedViewer />,
+            // ...
+        };
+
+    
+
+        // Note: this uses Reactor - built-in ReactJS implementation
+
+        // implements router abstraction
+
+        class App extends Element {
+
+            routeName; // current route name
+            routeView; // current route VNode
+            routeParams; // optional
+
+            constructor() {
+                super();
+                this.routeName = "index";
+                this.routeView = routes["index"];
+
+            }
+
+            render() {
+                return <body>
+                    <HeaderNavigation windowFrameOnly="false"/>
+                    <div id="content">
+                        {this.routeView}
+                    </div>
+                   
+                </body>;
+                //return <body>hi</body>;
+            }
+
+            componentDidMount() {
+                function callback(evt) {
+                    return this.navigateTo(evt.data.routeName, evt.data.data);
+                }
+                // subscribe this instance to global event named "some-event-name"
+                this.onGlobalEvent("navigateto", callback);
+            }
+
+            navigateTo(routeName, routeParams = null) {
+
+                let routeView = routes[routeName];
+                if (routeView) {
+                    this.componentUpdate({
+                        routeView: routeView,
+                        routeName: routeName,
+                        routeParams: routeParams
+                    });
+                    return true;
+                }
+            }
+
+            // event handlers:
+            onnavigateto(event) {
+                let { data, routeName } = event.data;
+                return navigateTo(routeName, data); // true - event consumed
+            }
+            // click on <a href="route:..."> or <button href="route:...">
+            ["on click at [href^='route:']"](event, hyperlink) {
+                const routeName = hyperlink.attributes["href"].substr(6);
+                console.log("route name", routeName);
+                return this.navigateTo(routeName);
+            }
+
+            ["on navigateto"](event) {
+                let {routeName, params} = event.data;
+                return this.navigateTo(routeName ,params); // true - event consumed
+            }
+        }
+
+        // Let's rock-n-roll
+        document.body.patch(<App />);
+        // document.$("#content").patch();
+
+    </script>
+</head>
+<!-- <include src="../extra/window-decoration.html" media="sciter" /> -->
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+class ProgressTooltip : Reactor.Component 
+{
+  function this(props,kids) {this.props = props;}
+
+  function render() {
+     return <div styleset="../styles/styles.css#progressTooltip">
+     <p>{this.props.message}</p>
+     <progress value={this.props.progress} />
+     </div>;
+  }
+
+
+  function attached() {
+    stdout.println("@ Tooltip Attched");
+  }
+  function detached() {
+    stdout.println("Tooltip gone");
+  }
+
+}

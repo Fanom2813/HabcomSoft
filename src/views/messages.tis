@@ -1,0 +1,22 @@
+include "ionicMessage.tis";
+
+class Messages : Reactor.Component 
+{
+  function this(props,kids) {}
+
+  function render() {
+     return <IonicMessage display="No message yet !" lottieFile="8604-message-loading.json" />;
+  }
+
+  event click $(button#test) {
+    view.msgbox(#information,"test button @ Home");  
+  }
+
+  function attached() {
+    stdout.println("@ messages");
+  }
+  function detached() {
+    stdout.println("messages gone");
+  }
+
+}

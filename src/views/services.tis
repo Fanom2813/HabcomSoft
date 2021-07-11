@@ -1,0 +1,58 @@
+
+class Services : Reactor.Component 
+{
+  this var services = []
+  function this(props,kids) {}
+
+  function render() {
+    debug info (services : {this.services});
+     return <main styleset="../styles/styles.css#servicesPage">
+             <div id="toolbar">
+               <button class="flat icon" id="back">
+                   <icon class="back" />
+               </button>
+
+               <p class="ml-1">Our Services</p>
+               </div>
+
+               <ul#servicesContainer>
+                {
+                  this.services.map((service) => 
+                  <li.shadow1 key={service.id}>
+                  <h4>{service.name}</h4>
+                  <p>{service.details.length > 0 ? service.details : "No details"}</p>
+
+                  <button#request.flat>request</button>
+                  </li>
+                )
+                }
+               </ul>
+           </main>;
+  }
+
+  async function attached() {
+    stdout.println("@ Services");
+    stdout.println("@ Fetching services.json");
+
+    try{
+      // debug info (from url {URL.toPath($url("extra/services.json"))})
+      var [data, request] = await view.request { url: URL.toPath(this.url("extra/services.json")), output: #json };
+
+      this.update({services : data});
+
+      
+    }catch(e){
+      debug warning (error : {e.message});
+    }
+
+
+  }
+  function detached() {
+    stdout.println("Services gone");
+  }
+
+  event click $(button#back) {
+    this.postEvent("navigateTo", {routeName : "/home"}); 
+  }
+
+}

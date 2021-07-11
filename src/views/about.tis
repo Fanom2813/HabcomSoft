@@ -1,0 +1,83 @@
+class About : Reactor.Component 
+{
+  this var members = [];
+  function this(props,kids) {}
+
+  function render() {
+     return <main styleset="../styles/styles.css#aboutPage">
+        <div id="toolbar">
+          <button class="flat icon" id="back">
+              <icon class="back" />
+          </button>
+
+          <p class="ml-1">Our Team</p>
+       </div>
+            
+        <ul id="member-wrapper">
+            { 
+                this.members.map((member) => 
+
+                <li .shadow1>
+                    <picture src={member.profile} />
+                    <div>
+                        <small>Full Name</small>
+                        <h5>{member.fullname}</h5>
+                        <small>Position</small>
+                        <h5>{member.position}</h5>
+                        
+                        <div id="socialMedia">
+                            <button gmail={member.gmail} class="flat icon"  id="back">
+                                <icon class="email" />
+                            </button>
+                            <button whatsapp={member.whatsapp} class="flat icon" id="back">
+                                <icon class="whatsapp" />
+                            </button>
+                            <button facebook={member.facebook} class="flat icon" id="back">
+                                <icon class="facebook" />
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                
+                ) 
+            }
+        </ul>
+      </main>;
+  }
+
+  event click $(button[facebook]) (evt, btn){
+    Sciter.launch("https://m.me/" + btn.attributes["facebook"] );
+  }
+
+  event click $(button[whatsapp]) (evt, btn){
+    Sciter.launch("https://wa.me/" + btn.attributes["whatsapp"] );
+  }
+
+  event click $(button[gmail]) (evt, btn){
+    Sciter.launch("mailto:" + btn.attributes["gmail"] );
+  }
+
+  event click $(button#back) {
+    this.postEvent("navigateTo", {routeName : "/home"}); 
+  }
+
+  async function attached() {
+    stdout.println("@ About");
+    stdout.println("@ Fetching from members.json");
+
+     try{
+      // debug info (from url {URL.toPath($url("extra/services.json"))})
+      var [data, request] = await view.request { url: URL.toPath(this.url("extra/members.json")), output: #json };
+
+      this.update({members : data});
+
+      
+    }catch(e){
+      debug warning (error : {e.message});
+    }
+  }
+  function detached() {
+    stdout.println("About gone");
+  }
+
+}

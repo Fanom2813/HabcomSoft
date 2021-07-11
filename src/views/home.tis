@@ -1,0 +1,92 @@
+include "ionicMessage.tis";
+
+class Home : Reactor.Component 
+{
+  this var tags = ["News","Application","Services", "Achievments"];
+  this var feeds = [];
+  this var pageNo = 0;
+  this var currentTag = "News";
+  this var showIonicMessage = true;
+
+  this var iconicImage = "66400-worm-loading.json";
+  this var iconicMessage = "Loading";
+
+  function this(props,kids) {}
+
+  function render() {
+     return <main styleset="../styles/styles.css#home">
+     { this.showIonicMessage ? <IonicMessage display={this.iconicMessage} lottieFile={this.iconicImage} /> : ""}
+     <ul class="tag-wrapper">
+     { 
+        this.tags.map((tag) => <li :current={this.currentTag === tag} key={tag}>#{tag}</li>) 
+     }
+     </ul>
+    
+     <ul#feedContainer>
+        { 
+          this.feeds.map((feed, index) => 
+            
+            <li.feedPreview key={index}>
+            <h4>{feed.title}</h4>
+            <picture src={feed.image} />
+            
+            <div>
+              <p#author>{feed.author}</p>  
+              <p#date>{new Date(feed.createdAt).toString("%d %b, %Y")}</p>
+            </div>
+            </li>
+
+          ) 
+        }
+     </ul>
+
+    </main>;
+      
+  }
+
+  event click $(.tag-wrapper li) (evt,li){
+   debug info (clicked on : {li.text.substring(1)})
+
+   this.update {currentTag : li.text.substring(1)}
+  }
+
+  event click $(button#test) {
+    view.msgbox(#information,"test button @ Home");  
+  }
+
+  event click $(li.feedPreview) (evt, el) {
+     debug info (click at {el.attributes["key"]})
+     stdout.println("Posting event navigateTo");
+     view.SelectedFeed = el.attributes["key"];
+     this.postEvent("navigateTo", {routeName : "/feedViewer"});
+  }
+
+
+  async function attached() {
+    stdout.println("@ Home");
+    stdout.println("Loading feeds");
+
+  //  getFeeds();
+  //  this.update({ ionicMessage: "Could not load data" });
+
+    try {
+      var [jsonData,response] = await view.request { url: "https://habcomsoft.herokuapp.com/feeds/0", output: #json };
+      
+      view.Feeds = jsonData;
+
+      this.update { feeds: jsonData, showIonicMessage : false };
+      // this.update({ feeds: jsonData });
+      debug info (Got data, object and array: {jsonData});
+
+    } catch(e) {
+      
+      debug error (Could not load data, {e.message})
+      this.update({ ionicMessage: "Could not load data", iconicImage : "14651-error-animation.json" });
+    }
+
+  }
+  function detached() {
+    stdout.println("Home gone");
+  }
+
+}

@@ -1,0 +1,52 @@
+<html 
+window-icon="images/ic_launcher.png"
+lang="en"
+window-resizable="true"
+window-frame="extended"
+window-blurbehind="dark"
+window-width="1000dip"
+window-height="700dip">
+
+<head>
+    <title>HabcomSoft Official</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/svg-icon.css">
+
+    <script type="text/tiscript">
+
+        include "./lib/router.tis";
+
+        include "views/home.tis";
+        include "views/about.tis";
+        include "views/messages.tis";
+        include "views/services.tis";
+        include "views/feedViewer.tis";
+        
+        
+        App.route( "/home", (path) => <Home/> );
+        App.route( "/about", (path) => <About/> );
+        App.route( "/messages", (path) => <Messages/> );
+        App.route( "/services", (path) => <Services/> );
+        App.route( "/feedViewer", (path) => <FeedViewer/> );
+
+
+        self << event keyup (evt) {
+            if( evt.keyCode == Event.VK_F5 ) {
+              if( self.parent ) // loaded in frame
+                self.parent.load(__FILE__);
+              else // loaded in view ...
+                view.load(__FILE__);
+              return true;
+            }
+        }
+
+       
+
+    </script>
+</head>
+
+<reactor|body>
+    <App.Main />
+</reactor>
+
+</html>

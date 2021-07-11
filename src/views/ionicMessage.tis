@@ -1,0 +1,22 @@
+
+class IonicMessage : Reactor.Component 
+{
+  function this(props,kids) {
+      this.props = props;
+  }
+
+  function render() {
+    return <div styleset="../styles/styles.css#emptyview">
+            <lottie loop autoplay src={"./lotties/" + this.props.lottieFile} />
+            <h4>{this.props.display}</h4>
+    </div>;
+  }
+
+  function attached() {
+    stdout.println("@ Ionic Message");
+  }
+  function detached() {
+    stdout.println("Ionic Message gone");
+  }
+
+}
