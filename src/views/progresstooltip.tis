@@ -5,7 +5,7 @@ class ProgressTooltip : Reactor.Component
   function render() {
      return <div styleset="../styles/styles.css#progressTooltip">
      <p>{this.props.message}</p>
-     <progress value={this.props.progress} />
+     <progress :value={this.props.progress} />
      </div>;
   }
 
