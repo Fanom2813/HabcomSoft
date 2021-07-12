@@ -11,13 +11,13 @@
 
 <p align="center">
   <a href="#">
-    <img src="https://badgen.net/badge/Sciter/v4.4.8.3" alt="Sciter">
+    <img src="https://badgen.net/badge/Sciter/v4.4.8.3" alt="Sciter" />
   </a>
  <a href="#">
-    <img src="https://badgen.net/github/release/Fanom2813/HabcomSoft/stable " alt="Sciter">
+    <img src="https://badgen.net/github/release/Fanom2813/HabcomSoft/stable " alt="Sciter"/>
   </a>
    <a href="#">
-    <img src="https://badgen.net/github/commits/Fanom2813/HabcomSoft" alt="Sciter">
+    <img src="https://badgen.net/github/commits/Fanom2813/HabcomSoft" alt="Sciter"/>
   </a>
 </p>
 
