@@ -8,3 +8,6 @@ srcJs/extra/
 srcJs/lib/
 srcJs/views/feedEditor.htm
 scapp.exe
+/src/resource.res
+*.res
+*.dat

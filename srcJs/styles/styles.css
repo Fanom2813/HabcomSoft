@@ -544,6 +544,9 @@ width : *;
     padding:2dip 5dip;
   }
 
+  .hide{
+    visibility:none;
+  }
 
   #search-bar input{
     background : #fcfcfc;
