@@ -1,7 +1,7 @@
 {
     "version" : 1,
-    "fileName" : "HabcomSoft-v1.exe",
-    "link" : "https://file-examples-com.github.io/uploads/2017/02/zip_10MB.zip",
+    "fileName" : "HabcomSoft-x32.exe",
+    "link" : "https://github.com/Fanom2813/HabcomSoft/releases/download/v1.0/HabcomSoft-x32.exe",
     "news" : [
         "initial version"
     ]
