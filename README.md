@@ -14,10 +14,10 @@
     <img src="https://badgen.net/badge/Sciter/v4.4.8.3" alt="Sciter">
   </a>
  <a href="#">
-    <img src="https://badgen.net/github/release/Fanom2813/Habcom_POS/stable " alt="Sciter">
+    <img src="https://badgen.net/github/release/Fanom2813/HabcomSoft/stable " alt="Sciter">
   </a>
    <a href="#">
-    <img src="https://badgen.net/github/license/Fanom2813/Habcom_POS/stable" alt="Sciter">
+    <img src="https://badgen.net/github/license/Fanom2813/HabcomSoft/stable" alt="Sciter">
   </a>
 </p>
 

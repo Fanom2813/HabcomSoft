@@ -27,4 +27,4 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 [Unreleased]: https://github.com/Fanom2813/HabcomSoft/compare/v1.0.0...HEAD
 [Released]: https://github.com/Fanom2813/HabcomSoft/releases
 [0.0.2]: https://github.com/Fanom2813/HabcomSoft/compare/v0.0.1..v0.0.2
-[0.0.1]: https://github.com/Fanom2813/HabcomSoft/releases/v0.0.1
+[1.0.0.0]: https://github.com/Fanom2813/HabcomSoft/releases/v1.0
