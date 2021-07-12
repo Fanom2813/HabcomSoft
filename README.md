@@ -16,9 +16,6 @@
  <a href="#">
     <img src="https://badgen.net/github/release/Fanom2813/HabcomSoft/stable " alt="Sciter"/>
   </a>
-   <a href="#">
-    <img src="https://badgen.net/github/commits/Fanom2813/HabcomSoft" alt="Sciter"/>
-  </a>
 </p>
 
 <p align="center">
